@@ -1,0 +1,1239 @@
+<!doctype html>
+
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+      name="viewport"
+    />
+    <meta content="mobile_stack" name="shell-type" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @layer base {
+        html,
+        body {
+          width: 100vw;
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          overscroll-behavior: none;
+        }
+        .pb-safe {
+          padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        .pt-safe {
+          padding-top: env(safe-area-inset-top, 0px);
+        }
+        main > :first-child {
+          margin-top: 0 !important;
+        }
+        main > :last-child {
+          margin-bottom: 0 !important;
+        }
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              background: "#f8f9ff",
+              "surface-container-low": "#eff4ff",
+              "outline-variant": "#c3c6ce",
+              "on-surface": "#0b1c30",
+              "secondary-container": "#fd761a",
+              error: "#ba1a1a",
+              secondary: "#9d4300",
+              "inverse-surface": "#213145",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed-variant": "#004b73",
+              "error-container": "#ffdad6",
+              "surface-dim": "#cbdbf5",
+              "surface-tint": "#49607c",
+              "surface-container-highest": "#d3e4fe",
+              "tertiary-fixed-dim": "#93ccff",
+              "secondary-fixed-dim": "#ffb690",
+              "inverse-primary": "#b0c9e8",
+              "on-primary-container": "#7991af",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#d1e4ff",
+              "on-secondary-container": "#5c2400",
+              "on-primary-fixed-variant": "#314863",
+              "on-secondary-fixed-variant": "#783200",
+              "surface-container-high": "#dce9ff",
+              "primary-container": "#0f2942",
+              "on-background": "#0b1c30",
+              "secondary-fixed": "#ffdbca",
+              "tertiary-container": "#002a44",
+              "surface-container": "#e5eeff",
+              "on-tertiary-fixed": "#001d31",
+              "on-tertiary-container": "#2e95da",
+              "tertiary-fixed": "#cce5ff",
+              "surface-variant": "#d3e4fe",
+              tertiary: "#001524",
+              "on-error": "#ffffff",
+              "inverse-on-surface": "#eaf1ff",
+              outline: "#74777e",
+              "surface-bright": "#f8f9ff",
+              "primary-fixed-dim": "#b0c9e8",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed": "#341100",
+              surface: "#f8f9ff",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed": "#011d35",
+              primary: "#001428",
+              "on-surface-variant": "#43474d",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "space-xl": "2rem",
+              margin: "1rem",
+              "space-sm": "0.5rem",
+              "space-xs": "0.25rem",
+              "space-lg": "1.5rem",
+              gutter: "1rem",
+              "space-md": "1rem",
+            },
+            fontFamily: {
+              "title-station": ["Inter"],
+              "data-mono": ["Inter"],
+              "headline-lg": ["Inter"],
+              "body-sm": ["Inter"],
+              "body-md": ["Inter"],
+              "headline-xl": ["Inter"],
+              "label-caps": ["Inter"],
+              "headline-xl-mobile": ["Inter"],
+              "headline-md": ["Inter"],
+              "label-lg": ["Inter"],
+              "label-md": ["Inter"],
+              "body-lg": ["Inter"],
+            },
+            fontSize: {
+              "title-station": [
+                "18px",
+                {
+                  lineHeight: "24px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "700",
+                },
+              ],
+              "data-mono": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "headline-lg": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.015em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+              "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "headline-xl": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-caps": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.06em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-xl-mobile": [
+                "26px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": [
+                "20px",
+                {
+                  lineHeight: "28px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-lg": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-md": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen"
+  >
+    <header
+      class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(15,41,66,0.04)] pt-safe"
+    >
+      <div class="h-16 px-gutter flex items-center justify-between">
+        <div class="flex items-center gap-space-xs">
+          <button
+            aria-label="Kembali"
+            class="w-11 h-11 -ml-2 flex items-center justify-center rounded-full text-on-surface hover:bg-surface-container-high transition-colors"
+            onclick="history.back()"
+          >
+            <span class="material-symbols-outlined text-[24px]"
+              >arrow_back</span
+            >
+          </button>
+          <h1
+            class="font-headline-md text-headline-md text-primary tracking-tight truncate max-w-[210px] sm:max-w-xs"
+          >
+            Pilih Kursi
+          </h1>
+        </div>
+        <div class="flex items-center gap-space-xs">
+          <a
+            aria-label="Tutup"
+            class="w-11 h-11 flex items-center justify-center rounded-full text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors"
+            data-path="book-tickets"
+            href="#"
+            ><span class="material-symbols-outlined text-[24px]">close</span></a
+          >
+        </div>
+      </div>
+    </header>
+    <main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface">
+      <div class="flex flex-col w-full pb-28">
+        <!-- Micro Trip Context Banner -->
+        <div
+          class="px-gutter pt-space-sm pb-space-sm bg-surface-container-low flex items-center justify-between shadow-sm"
+        >
+          <div class="flex items-center gap-space-sm min-w-0">
+            <div
+              class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0"
+            >
+              <span class="material-symbols-outlined text-[18px]">train</span>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span
+                  class="font-label-caps text-label-caps uppercase text-secondary-container bg-surface-container-highest px-1.5 py-0.5 rounded"
+                  >YK → SLO</span
+                >
+                <span
+                  class="font-data-mono text-data-mono text-primary font-bold"
+                  >No. 92</span
+                >
+              </div>
+              <p
+                class="font-body-sm text-body-sm text-on-surface-variant truncate"
+              >
+                KA Lodaya • Est. 45m
+              </p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span
+              class="font-label-caps text-label-caps text-on-surface-variant uppercase block"
+              >Keberangkatan</span
+            >
+            <span class="font-label-md text-label-md text-primary font-bold"
+              >07:15 WIB</span
+            >
+          </div>
+        </div>
+        <!-- Coach / Gerbong Horizontal Selector -->
+        <div class="pt-space-md pb-space-xs">
+          <div class="px-gutter flex items-center justify-between mb-2">
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-secondary text-[18px]"
+                >view_carousel</span
+              >
+              <span
+                class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant"
+                >Pilih Gerbong</span
+              >
+            </div>
+            <span class="font-body-sm text-body-sm text-primary font-semibold"
+              >Tersisa 14 Kursi</span
+            >
+          </div>
+          <!-- Coach Carousel -->
+          <div
+            class="flex gap-space-sm overflow-x-auto px-gutter no-scrollbar py-1 scroll-smooth"
+            id="coach-scroller"
+          >
+            <!-- Coach 1 -->
+            <button
+              class="shrink-0 px-3.5 py-2.5 rounded-lg bg-surface-container-lowest text-left shadow-sm flex flex-col gap-0.5 transition-transform active:scale-95"
+              onclick="selectCoach(this, 'Gerbong 1')"
+              type="button"
+            >
+              <div class="flex items-center gap-1">
+                <span
+                  class="font-label-md text-label-md text-on-surface font-bold"
+                  >Gerbong 1</span
+                >
+                <span
+                  class="material-symbols-outlined text-[14px] text-secondary"
+                  >workspace_premium</span
+                >
+              </div>
+              <span class="font-body-sm text-body-sm text-on-surface-variant"
+                >Eksekutif</span
+              >
+              <span class="font-data-mono text-[11px] text-primary font-medium"
+                >Rp85.000</span
+              >
+            </button>
+            <!-- Coach 2 -->
+            <button
+              class="shrink-0 px-3.5 py-2.5 rounded-lg bg-surface-container-lowest text-left shadow-sm flex flex-col gap-0.5 transition-transform active:scale-95"
+              onclick="selectCoach(this, 'Gerbong 2')"
+              type="button"
+            >
+              <div class="flex items-center gap-1">
+                <span
+                  class="font-label-md text-label-md text-on-surface font-bold"
+                  >Gerbong 2</span
+                >
+              </div>
+              <span class="font-body-sm text-body-sm text-on-surface-variant"
+                >Ekonomi Premium</span
+              >
+              <span class="font-data-mono text-[11px] text-primary font-medium"
+                >Rp50.000</span
+              >
+            </button>
+            <!-- Coach 3 (Active) -->
+            <button
+              class="shrink-0 px-3.5 py-2.5 rounded-lg bg-primary-container text-on-primary text-left shadow-md flex flex-col gap-0.5 relative transition-transform active:scale-95"
+              id="active-coach-tab"
+              onclick="selectCoach(this, 'Gerbong 3')"
+              type="button"
+            >
+              <div class="flex items-center justify-between gap-2">
+                <span
+                  class="font-label-md text-label-md text-on-primary font-bold"
+                  >Gerbong 3 (Dipilih)</span
+                >
+                <span
+                  class="w-2 h-2 rounded-full bg-secondary-container"
+                ></span>
+              </div>
+              <span class="font-body-sm text-body-sm text-surface-variant"
+                >Ekonomi</span
+              >
+              <span
+                class="font-data-mono text-[11px] text-secondary-fixed-dim font-bold"
+                >Terpilih • Sisa 14 Kursi</span
+              >
+            </button>
+          </div>
+        </div>
+        <!-- Seat Legend Strip -->
+        <div class="px-gutter my-space-sm">
+          <div
+            class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-around shadow-sm"
+          >
+            <div class="flex items-center gap-1.5">
+              <div
+                class="w-5 h-5 rounded-md bg-surface-container-lowest shadow-sm flex items-center justify-center"
+              >
+                <span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+              </div>
+              <span
+                class="font-label-caps text-label-caps text-on-surface-variant"
+                >Tersedia</span
+              >
+            </div>
+            <div class="flex items-center gap-1.5">
+              <div
+                class="w-5 h-5 rounded-md bg-primary text-on-primary shadow-sm flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-[14px]">check</span>
+              </div>
+              <span
+                class="font-label-caps text-label-caps text-primary font-bold"
+                >Dipilih</span
+              >
+            </div>
+            <div class="flex items-center gap-1.5">
+              <div
+                class="w-5 h-5 rounded-md bg-surface-dim flex items-center justify-center opacity-60"
+              >
+                <span
+                  class="material-symbols-outlined text-[12px] text-on-surface-variant"
+                  >close</span
+                >
+              </div>
+              <span
+                class="font-label-caps text-label-caps text-on-surface-variant"
+                >Terisi</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Train Fuselage & Interactive Cabin Canvas -->
+        <div class="px-gutter my-space-xs">
+          <div
+            class="bg-surface-container-lowest rounded-2xl p-space-md shadow-md flex flex-col items-center relative overflow-hidden"
+          >
+            <!-- Coach Header & Direction Vector -->
+            <div
+              class="w-full flex flex-col items-center pb-space-sm mb-space-sm bg-surface-container-low rounded-xl py-2 px-3"
+            >
+              <div class="flex items-center gap-2 text-primary">
+                <span
+                  class="material-symbols-outlined text-[18px] text-secondary-container animate-bounce"
+                  >arrow_upward</span
+                >
+                <span
+                  class="font-label-caps text-label-caps uppercase tracking-widest text-primary font-bold"
+                  >Arah Laju Kereta (Depan) - Menuju Solo Balapan</span
+                >
+                <span
+                  class="material-symbols-outlined text-[18px] text-secondary-container animate-bounce"
+                  >arrow_upward</span
+                >
+              </div>
+              <span class="font-body-sm text-body-sm text-on-surface-variant"
+                >Gerbong 3 • KA Lodaya • Fasilitas Lengkap</span
+              >
+            </div>
+            <!-- Fore Amenities Bar -->
+            <div
+              class="w-full grid grid-cols-3 gap-2 py-2 mb-3 bg-surface-container rounded-lg px-3 text-center"
+            >
+              <div
+                class="flex items-center justify-center gap-1 text-on-surface-variant"
+              >
+                <span class="material-symbols-outlined text-[16px]">wc</span>
+                <span class="font-label-caps text-label-caps">Toilet</span>
+              </div>
+              <div
+                class="flex items-center justify-center gap-1 text-on-surface-variant"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >luggage</span
+                >
+                <span class="font-label-caps text-label-caps">Rak Bagasi</span>
+              </div>
+              <div
+                class="flex items-center justify-center gap-1 text-on-surface-variant"
+              >
+                <span class="material-symbols-outlined text-[16px]">power</span>
+                <span class="font-label-caps text-label-caps"
+                  >Stopkontak 220V</span
+                >
+              </div>
+            </div>
+            <!-- Column Labels (A Jendela - B Lorong - Lorong - C Lorong - D Jendela) -->
+            <div
+              class="w-full max-w-[340px] grid grid-cols-5 text-center items-center py-1 mb-2 font-label-md text-label-md text-on-surface-variant font-bold"
+            >
+              <div class="flex flex-col items-center justify-center">
+                <div class="flex items-center gap-0.5">
+                  <span>A</span>
+                  <span
+                    class="material-symbols-outlined text-[12px] text-secondary"
+                    >window</span
+                  >
+                </div>
+                <span class="text-[10px] text-outline font-normal"
+                  >Jendela</span
+                >
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                <span>B</span>
+                <span class="text-[10px] text-outline font-normal">Lorong</span>
+              </div>
+              <div
+                class="flex items-center justify-center text-outline text-[11px] font-normal tracking-wide"
+              >
+                Lorong
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                <span>C</span>
+                <span class="text-[10px] text-outline font-normal">Lorong</span>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                <div class="flex items-center gap-0.5">
+                  <span>D</span>
+                  <span
+                    class="material-symbols-outlined text-[12px] text-secondary"
+                    >window</span
+                  >
+                </div>
+                <span class="text-[10px] text-outline font-normal"
+                  >Jendela</span
+                >
+              </div>
+            </div>
+            <!-- Visual Seat Grid (Rows 1 to 8) -->
+            <div class="w-full max-w-[340px] flex flex-col gap-2.5">
+              <!-- Row 1 -->
+              <div class="grid grid-cols-5 gap-2 items-center">
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '1A')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">1A</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '1B')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >1B</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <div
+                  class="flex items-center justify-center font-data-mono text-[11px] text-outline-variant font-bold"
+                >
+                  01
+                </div>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '1C')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >1C</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '1D')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">1D</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+              </div>
+              <!-- Row 2 -->
+              <div class="grid grid-cols-5 gap-2 items-center">
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '2A')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >2A</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '2B')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">2B</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+                <div
+                  class="flex items-center justify-center font-data-mono text-[11px] text-outline-variant font-bold"
+                >
+                  02
+                </div>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '2C')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >2C</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '2D')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >2D</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+              </div>
+              <!-- Row 3 -->
+              <div class="grid grid-cols-5 gap-2 items-center">
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '3A')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">3A</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '3B')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">3B</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+                <div
+                  class="flex items-center justify-center font-data-mono text-[11px] text-outline-variant font-bold"
+                >
+                  03
+                </div>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '3C')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >3C</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '3D')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >3D</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+              </div>
+              <!-- Mid-Car Table Feature Insert -->
+              <div
+                class="w-full py-1.5 px-3 bg-surface-container-low rounded-lg flex items-center justify-between text-on-surface-variant"
+              >
+                <span
+                  class="font-label-caps text-label-caps flex items-center gap-1"
+                >
+                  <span
+                    class="material-symbols-outlined text-[14px] text-secondary"
+                    >table_restaurant</span
+                  >
+                  Meja Bersama (Baris 3-4)
+                </span>
+                <span
+                  class="font-data-mono text-[11px] text-secondary font-bold"
+                  >Menghadap Depan</span
+                >
+              </div>
+              <!-- Row 4 (Selected Row: 4A Highlighted) -->
+              <div class="grid grid-cols-5 gap-2 items-center relative">
+                <!-- Active highlight glow frame for 4A -->
+                <button
+                  class="seat-btn h-12 rounded-lg bg-primary text-on-primary flex flex-col items-center justify-center shadow-lg relative transform scale-105 transition-all"
+                  id="seat-4A"
+                  onclick="handleSeatTap(this, '4A')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >4A</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[14px] text-secondary-container"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >check_circle</span
+                  >
+                  <span
+                    class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-secondary-container rounded-full animate-ping"
+                  ></span>
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '4B')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >4B</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <div
+                  class="flex items-center justify-center font-data-mono text-[11px] text-secondary font-bold"
+                >
+                  04
+                </div>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '4C')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">4C</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '4D')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >4D</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+              </div>
+              <!-- Row 5 -->
+              <div class="grid grid-cols-5 gap-2 items-center">
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '5A')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >5A</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '5B')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >5B</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <div
+                  class="flex items-center justify-center font-data-mono text-[11px] text-outline-variant font-bold"
+                >
+                  05
+                </div>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '5C')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">5C</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '5D')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">5D</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+              </div>
+              <!-- Row 6 -->
+              <div class="grid grid-cols-5 gap-2 items-center">
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '6A')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">6A</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '6B')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >6B</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <div
+                  class="flex items-center justify-center font-data-mono text-[11px] text-outline-variant font-bold"
+                >
+                  06
+                </div>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '6C')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >6C</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '6D')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >6D</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+              </div>
+              <!-- Row 7 -->
+              <div class="grid grid-cols-5 gap-2 items-center">
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '7A')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >7A</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '7B')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >7B</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <div
+                  class="flex items-center justify-center font-data-mono text-[11px] text-outline-variant font-bold"
+                >
+                  07
+                </div>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '7C')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">7C</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '7D')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >7D</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+              </div>
+              <!-- Row 8 -->
+              <div class="grid grid-cols-5 gap-2 items-center">
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '8A')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >8A</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '8B')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >8B</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <div
+                  class="flex items-center justify-center font-data-mono text-[11px] text-outline-variant font-bold"
+                >
+                  08
+                </div>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-container-high text-on-surface flex flex-col items-center justify-center shadow-sm hover:bg-surface-container-highest transition-transform active:scale-95"
+                  onclick="handleSeatTap(this, '8C')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps font-bold"
+                    >8C</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-[12px] text-outline"
+                    >chair</span
+                  >
+                </button>
+                <button
+                  class="seat-btn h-12 rounded-lg bg-surface-dim text-on-surface-variant opacity-50 flex flex-col items-center justify-center cursor-not-allowed"
+                  disabled=""
+                  onclick="handleSeatTap(this, '8D')"
+                  type="button"
+                >
+                  <span class="font-label-caps text-label-caps">8D</span>
+                  <span class="material-symbols-outlined text-[14px]"
+                    >person</span
+                  >
+                </button>
+              </div>
+            </div>
+            <!-- Aft Amenities Bar -->
+            <div
+              class="w-full grid grid-cols-2 gap-2 mt-4 pt-3 bg-surface-container rounded-lg px-3 text-center"
+            >
+              <div
+                class="flex items-center justify-center gap-1.5 text-on-surface-variant py-1"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >local_cafe</span
+                >
+                <span class="font-label-caps text-label-caps"
+                  >Akses Kereta Makan (Gerbong 4)</span
+                >
+              </div>
+              <div
+                class="flex items-center justify-center gap-1.5 text-on-surface-variant py-1"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >accessible</span
+                >
+                <span class="font-label-caps text-label-caps"
+                  >Kursi Ramah Disabilitas</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Passenger Assignment & Seat Specs Card -->
+        <div class="px-gutter mt-space-sm mb-space-xs">
+          <div class="bg-surface-container-low rounded-xl p-space-md shadow-sm">
+            <div
+              class="flex items-center justify-between pb-2 mb-2 bg-surface-container-lowest/50 rounded-lg px-2.5 py-1.5"
+            >
+              <div class="flex items-center gap-2">
+                <div
+                  class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs"
+                >
+                  1
+                </div>
+                <div>
+                  <span
+                    class="font-label-md text-label-md text-primary font-bold block"
+                    >1. Budi Santoso</span
+                  >
+                  <span
+                    class="font-body-sm text-body-sm text-on-surface-variant"
+                    >Dewasa • Penumpang Utama</span
+                  >
+                </div>
+              </div>
+              <span
+                class="font-label-caps text-label-caps text-secondary-container bg-surface-container-highest px-2 py-1 rounded-full font-bold"
+                >Terpilih</span
+              >
+            </div>
+            <!-- Feature Pill Badges -->
+            <div class="grid grid-cols-3 gap-2 text-center pt-1">
+              <div class="bg-surface-container-lowest p-2 rounded-lg shadow-sm">
+                <span
+                  class="material-symbols-outlined text-[16px] text-secondary block mb-0.5"
+                  >window</span
+                >
+                <span
+                  class="font-label-caps text-[10px] text-on-surface-variant block uppercase"
+                  >Posisi</span
+                >
+                <span class="font-label-md text-label-md text-primary font-bold"
+                  >Jendela (A)</span
+                >
+              </div>
+              <div class="bg-surface-container-lowest p-2 rounded-lg shadow-sm">
+                <span
+                  class="material-symbols-outlined text-[16px] text-secondary block mb-0.5"
+                  >trending_up</span
+                >
+                <span
+                  class="font-label-caps text-[10px] text-on-surface-variant block uppercase"
+                  >Hadap</span
+                >
+                <span class="font-label-md text-label-md text-primary font-bold"
+                  >Maju Menghadap Depan</span
+                >
+              </div>
+              <div class="bg-surface-container-lowest p-2 rounded-lg shadow-sm">
+                <span
+                  class="material-symbols-outlined text-[16px] text-secondary block mb-0.5"
+                  >bolt</span
+                >
+                <span
+                  class="font-label-caps text-[10px] text-on-surface-variant block uppercase"
+                  >Fasilitas</span
+                >
+                <span class="font-label-md text-label-md text-primary font-bold"
+                  >Stopkontak 220V</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom Floating Confirmation Bar -->
+        <div
+          class="fixed bottom-0 left-0 w-full z-40 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_-8px_24px_rgba(15,41,66,0.08)] pb-safe pt-space-sm px-gutter"
+        >
+          <div
+            class="max-w-md mx-auto flex items-center justify-between gap-space-md mb-2"
+          >
+            <!-- Summary details -->
+            <div class="flex flex-col min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span
+                  class="font-label-caps text-label-caps text-on-surface-variant uppercase"
+                  >Kursi Terpilih:</span
+                >
+                <span
+                  class="font-data-mono text-data-mono text-primary font-bold"
+                  id="selected-seat-label"
+                  >Gerbong 3, 4A</span
+                >
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span
+                  class="font-headline-md text-headline-md text-primary font-bold"
+                  >Rp45.000</span
+                >
+                <span class="font-body-sm text-body-sm text-on-surface-variant"
+                  >/ 1 Penumpang</span
+                >
+              </div>
+            </div>
+            <!-- Action Button -->
+            <button
+              class="flex-1 max-w-[210px] h-[52px] rounded-lg bg-secondary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:opacity-95 active:scale-95 transition-all flex items-center justify-center gap-1.5"
+              type="button"
+            >
+              <span>Konfirmasi &amp; Lanjut</span>
+              <span class="material-symbols-outlined text-[18px]"
+                >arrow_forward</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+      <script>
+        let activeSeat = "4A";
+
+        function handleSeatTap(buttonElement, seatCode) {
+          if (buttonElement.disabled) return;
+
+          // Reset previous selected seat
+          const prevSeat = document.getElementById("seat-" + activeSeat);
+          if (prevSeat) {
+            prevSeat.classList.remove(
+              "bg-primary",
+              "text-on-primary",
+              "shadow-lg",
+              "scale-105",
+            );
+            prevSeat.classList.add(
+              "bg-surface-container-high",
+              "text-on-surface",
+              "shadow-sm",
+            );
+            prevSeat.innerHTML = `
+        <span class="font-label-caps text-label-caps font-bold">${activeSeat}</span>
+        <span class="material-symbols-outlined text-[12px] text-outline">chair</span>
+      `;
+            prevSeat.removeAttribute("id");
+          }
+
+          // Set new active seat
+          activeSeat = seatCode;
+          buttonElement.id = "seat-" + activeSeat;
+          buttonElement.classList.remove(
+            "bg-surface-container-high",
+            "text-on-surface",
+            "shadow-sm",
+          );
+          buttonElement.classList.add(
+            "bg-primary",
+            "text-on-primary",
+            "shadow-lg",
+            "scale-105",
+          );
+          buttonElement.innerHTML = `
+      <span class="font-label-caps text-label-caps font-bold">${activeSeat}</span>
+      <span class="material-symbols-outlined text-[14px] text-secondary-container" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+      <span class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-secondary-container rounded-full animate-ping"></span>
+    `;
+
+          // Update bottom bar label
+          const seatLabel = document.getElementById("selected-seat-label");
+          if (seatLabel) {
+            seatLabel.innerText = "Gerbong 3, " + activeSeat;
+          }
+        }
+
+        function selectCoach(element, coachName) {
+          const scroller = document.getElementById("coach-scroller");
+          if (!scroller) return;
+
+          const tabs = scroller.querySelectorAll("button");
+          tabs.forEach((tab) => {
+            tab.classList.remove(
+              "bg-primary-container",
+              "text-on-primary",
+              "shadow-md",
+            );
+            tab.classList.add("bg-surface-container-lowest", "shadow-sm");
+            const sub = tab.querySelector(".text-surface-variant");
+            if (sub) {
+              sub.classList.remove("text-surface-variant");
+              sub.classList.add("text-on-surface-variant");
+            }
+          });
+
+          element.classList.remove("bg-surface-container-lowest", "shadow-sm");
+          element.classList.add(
+            "bg-primary-container",
+            "text-on-primary",
+            "shadow-md",
+          );
+        }
+      </script>
+    </main>
+  </body>
+</html>
