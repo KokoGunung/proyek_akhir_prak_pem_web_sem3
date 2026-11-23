@@ -1,0 +1,236 @@
+/* style.css - tambahan tampilan di atas Tailwind */
+
+/* ===== TAMPILAN HP (layar < 1024px) ===== */
+@media (max-width: 1023px) {
+  /* Latar di luar aplikasi (kalau dibuka di laptop) */
+  html {
+    background-color: #dce9ff;
+  }
+
+  /* Aplikasi dibuat selebar HP supaya rapi di layar besar */
+  body {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #f8f9ff;
+    box-shadow: 0 0 30px rgba(15, 41, 66, 0.15);
+  }
+
+  /* Header dan menu bawah ikut selebar body */
+  header,
+  nav {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Menu bawah sedikit mengecil saat ditekan */
+nav a:active {
+  transform: scale(0.92);
+}
+
+/* Teks menu yang aktif diberi garis kecil di atas ikon */
+nav a[aria-current="page"] {
+  border-top: 3px solid #fd761a;
+}
+
+/* Kotak daftar di halaman akun */
+.menu-akun {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  color: #0b1c30;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  width: 100%;
+  text-align: left;
+}
+
+.menu-akun:hover {
+  background-color: #e5eeff;
+}
+
+
+/* =====================================================
+   TAMPILAN DESKTOP (layar >= 1024px)
+   Header di atas, menu pindah ke sidebar kiri,
+   isi halaman melebar dan disusun dalam kolom.
+   ===================================================== */
+@media (min-width: 1024px) {
+  html {
+    background-color: #f8f9ff;
+    scrollbar-width: thin;
+  }
+
+  /* Scrollbar ditampilkan lagi (di HP disembunyikan) */
+  ::-webkit-scrollbar { display: block; width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: #c3c6ce; border-radius: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Badan halaman selebar layar, disisakan ruang untuk sidebar */
+  body {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-left: 248px;
+    box-shadow: none;
+  }
+
+  /* Header selebar layar */
+  header {
+    max-width: none !important;
+    margin: 0 !important;
+    box-shadow: 0 1px 0 rgba(15, 41, 66, 0.08);
+  }
+  header > div { padding-left: 24px; padding-right: 24px; }
+
+  /* Menu bawah -> sidebar kiri */
+  nav {
+    top: 64px !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: auto !important;
+    width: 248px;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 20px 14px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    box-shadow: 1px 0 0 rgba(15, 41, 66, 0.08);
+  }
+  nav > div.flex {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: auto;
+    gap: 6px;
+    padding: 0;
+  }
+  nav > div.flex > a {
+    flex-direction: row;
+    flex: none;
+    height: 48px;
+    justify-content: flex-start;
+    gap: 14px;
+    padding: 0 16px;
+    border-radius: 12px;
+  }
+  nav > div.flex > a:hover { background-color: #eff4ff; }
+  nav > div.flex > a > span:last-child { font-size: 14px; line-height: 20px; }
+  nav > div.flex > a[aria-current="page"] {
+    border-top: 0;
+    background-color: rgba(253, 118, 26, 0.12);
+    box-shadow: inset 3px 0 0 #fd761a;
+  }
+  nav a:active { transform: none; }
+
+  /* Area isi */
+  main {
+    padding-bottom: 40px !important;
+  }
+  body[data-halaman] main > div {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px 32px 8px;
+  }
+  body[data-halaman] main .px-margin,
+  body[data-halaman] main .px-gutter {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  body[data-halaman] main > div > * { margin-top: 0 !important; }
+
+  /* Notifikasi kecil di jadwal: pindah ke kanan-bawah area isi */
+  #action-toast {
+    bottom: 24px !important;
+    left: 272px !important;
+    right: 24px !important;
+    max-width: 480px;
+  }
+
+  /* Jendela detail stasiun: di tengah layar, bukan menempel di bawah */
+  #station-modal { align-items: center; }
+  #station-modal > div { max-width: 520px; border-radius: 16px; }
+}
+
+/* ---------- Layar lebar (>= 1200px): isi disusun 2 kolom ---------- */
+@media (min-width: 1200px) {
+  body[data-halaman] main > div { max-width: 1200px; }
+
+  /* BERANDA */
+  body[data-halaman="beranda"] main > div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+  }
+  body[data-halaman="beranda"] main > div > :nth-child(1),
+  body[data-halaman="beranda"] main > div > :nth-child(4) { grid-column: 1 / -1; }
+  body[data-halaman="beranda"] main > div > :nth-child(2) > div { height: 100%; }
+  body[data-halaman="beranda"] main > div > :nth-child(3) > .grid { height: 100%; }
+  body[data-halaman="beranda"] main > div > :nth-child(4) .h-36 { height: 260px; }
+
+  /* JADWAL */
+  body[data-halaman="jadwal"] main > div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: center;
+  }
+  body[data-halaman="jadwal"] main > div > :nth-child(1) { grid-column: 1; grid-row: 1; }
+  body[data-halaman="jadwal"] main > div > :nth-child(2) { grid-column: 2; grid-row: 1; }
+  body[data-halaman="jadwal"] main > div > :nth-child(3) { grid-column: 1 / -1; grid-row: 2; }
+  body[data-halaman="jadwal"] #schedule-container {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+    align-items: start;
+  }
+  body[data-halaman="jadwal"] #filter-empty-state { grid-column: 1 / -1; }
+
+  /* RUTE: satu kolom bersih di tengah */
+  body[data-halaman="rute"] main > div { max-width: 720px; }
+
+  /* E-TIKET */
+  body[data-halaman="etiket"] main > div {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+    max-width: 960px;
+  }
+  body[data-halaman="etiket"] main > div > :nth-child(1) { grid-column: 1; grid-row: 1; }
+  body[data-halaman="etiket"] main > div > :nth-child(2) { grid-column: 2; grid-row: 1 / span 2; }
+  body[data-halaman="etiket"] main > div > :nth-child(3) { grid-column: 1; grid-row: 2; }
+
+  /* AKUN */
+  body[data-halaman="akun"] main > div {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+    max-width: 1000px;
+  }
+  body[data-halaman="akun"] main > div > :nth-child(1),
+  body[data-halaman="akun"] main > div > :nth-child(2) { grid-column: span 3; }
+  body[data-halaman="akun"] main > div > h2 { grid-column: 1 / -1; }
+  body[data-halaman="akun"] main > div > .menu-akun { grid-column: span 2; }
+}
+
+/* Halaman login dan top up (desktop) */
+@media (min-width: 1024px) {
+  body[data-halaman="login"] { padding-left: 0; }
+  body[data-halaman="login"] main > div { max-width: 384px; padding: 0; }
+  body[data-halaman="topup"] main > div { max-width: 560px; }
+}
