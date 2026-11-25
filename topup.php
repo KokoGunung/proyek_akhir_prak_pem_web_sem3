@@ -1,3 +1,6 @@
+<?php 
+  session_start();
+?>
 <!DOCTYPE html>
 
 <html lang="id">
@@ -87,14 +90,11 @@
   <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface">
     <div class="flex flex-col w-full px-margin pt-4 gap-space-md">
       <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary">Top Up Saldo</h1>
-
       <div class="bg-primary-container text-on-primary rounded-xl p-4 shadow-md">
         <p class="font-label-caps text-label-caps uppercase text-secondary-fix">Saldo</p>
-        <p class="font-headline-xl-mobile text-headline-xl-mobile mt-1">Rp <span data-saldo></span></p>
+        <p class="font-headline-xl-mobile text-headline-xl-mobile mt-1">Rp <span data-saldo><?php echo $_SESSION["saldo"] ?> </span></p>
       </div>
-
-      <form id="form-topup" class="flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl p-5 shadow-sm"
-        novalidate>
+      <form action="topup_result.php" method="post" id="form-topup" class="flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl p-5 shadow-sm">
         <div class="grid grid-cols-2 gap-space-sm">
           <button type="button"
             class="preset h-12 rounded-lg bg-surface-container text-primary font-label-lg text-label-lg hover:bg-surface-container-high transition-colors"
@@ -111,10 +111,9 @@
         </div>
         <label class="flex flex-col gap-1.5">
           <span class="font-label-md text-label-md text-on-surface-variant">Nominal (Rp)</span>
-          <input id="nominal" type="text" inputmode="numeric" autocomplete="off"
+          <input id="nominal" type="text" inputmode="numeric" autocomplete="off" required name="addsaldo"
             class="w-full h-12 px-4 rounded-lg bg-surface border border-outline-variant font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary-container" />
         </label>
-        <p id="pesan" class="hidden font-body-sm text-body-sm"></p>
         <button type="submit"
           class="h-12 rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-lg text-label-lg transition-colors">Top
           Up</button>
@@ -128,13 +127,6 @@
     var PRESET_AKTIF = "preset h-12 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors";
     var PRESET_BIASA = "preset h-12 rounded-lg bg-surface-container text-primary font-label-lg text-label-lg hover:bg-surface-container-high transition-colors";
     var input = document.getElementById("nominal");
-    var elPesan = document.getElementById("pesan");
-
-    function tampilkanPesan(teks, berhasil) {
-      elPesan.textContent = teks;
-      elPesan.style.color = berhasil ? "#0a7a3d" : "#ba1a1a";
-      elPesan.classList.remove("hidden");
-    }
 
     function tandaiPreset(nilai) {
       document.querySelectorAll(".preset").forEach(function (b) {
@@ -148,7 +140,6 @@
         var nilai = b.getAttribute("data-nominal");
         input.value = nilai;
         tandaiPreset(nilai);
-        elPesan.classList.add("hidden");
       });
     });
 
@@ -157,24 +148,6 @@
       input.value = input.value.replace(/[^0-9]/g, "");
       tandaiPreset(input.value);
       elPesan.classList.add("hidden");
-    });
-
-    document.getElementById("form-topup").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var nominal = parseInt(input.value, 10);
-      if (!nominal || nominal < MIN) {
-        tampilkanPesan("Nominal minimal Rp " + rupiah(MIN) + ".", false);
-        return;
-      }
-      if (nominal > MAKS) {
-        tampilkanPesan("Nominal maksimal Rp " + rupiah(MAKS) + ".", false);
-        return;
-      }
-      tambahSaldo(nominal);
-      tampilkanData();
-      input.value = "";
-      tandaiPreset("");
-      tampilkanPesan("Top up Rp " + rupiah(nominal) + " berhasil.", true);
     });
   </script>
 </body>

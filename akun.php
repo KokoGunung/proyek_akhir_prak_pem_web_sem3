@@ -98,10 +98,9 @@
       <!-- Info kartu KMT -->
       <div class="bg-primary-container text-on-primary rounded-xl p-4 shadow-md">
         <p class="font-label-caps text-label-caps uppercase text-secondary-fixed-dim">Kartu Multi Trip (KMT)</p>
-        <p class="font-data-mono text-body-md mt-1">KMT-8940 2938 1092</p>
-        <p class="font-headline-md text-headline-md mt-2">Rp <span data-saldo=""></span></p>
+        <p class="font-headline-md text-headline-md mt-2">Rp <span><?php echo $_SESSION["saldo"] ?></span></p>
         <p class="font-body-sm text-body-sm text-on-primary-container">Saldo aktif • Tarif Rp8.000 / trip</p>
-        <a class="inline-flex items-center gap-1.5 mt-3 px-3 py-2 rounded-lg bg-secondary-container text-on-secondary font-label-lg text-label-lg"
+        <a class="inline-flex items-center gap-1.5 mt-3 px-3 py-2 rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-lg text-label-lg"
           href="topup.php"><span class="material-symbols-outlined text-[18px]">add_circle</span>Top Up Saldo</a>
       </div>
       <!-- Daftar menu -->
