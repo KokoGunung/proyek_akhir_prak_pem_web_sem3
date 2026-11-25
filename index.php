@@ -257,7 +257,7 @@
         data-path="e-tiket" href="etiket.html"><span class="material-symbols-outlined text-[24px]">qr_code_2</span><span
           class="font-label-md text-label-md">E-Tiket</span></a><a
         class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
-        data-path="akun" href="akun.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span
+        data-path="akun" href="akun.php"><span class="material-symbols-outlined text-[24px]">account_circle</span><span
           class="font-label-md text-label-md">Akun</span></a></div>
   </nav>
   <script src="js/script.js"></script>

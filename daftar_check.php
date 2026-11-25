@@ -117,16 +117,16 @@
   <link href="css/style.css" rel="stylesheet" />
 </head>
 
-<body data-halaman="login" class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen">
+<body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen">
   <main class="flex-1 flex items-center justify-center px-margin py-10">
     <div class="w-full max-w-sm flex flex-col gap-space-md">
       <div class="flex flex-col items-center gap-space-sm">
         <div class="w-14 h-14 rounded-xl bg-primary-container flex items-center justify-center">
           <span class="material-symbols-outlined text-[30px] text-secondary-container">train</span>
+            </div>
+            <h1 class="font-headline-lg text-headline-lg text-primary">KRL Jogja - Solo</h1>
         </div>
-        <h1 class="font-headline-lg text-headline-lg text-primary">KRL Jogja - Solo</h1>
-      </div>
-      <div class="flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl p-5 shadow-sm">
+        <div class="flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl p-5 shadow-sm">
         <h1>Berhasil membuat akun baru, silakan masuk</h1>
         <a href="login.php" class="w-full">
         <button  class="w-full h-12 rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-lg text-label-lg transition-colors"

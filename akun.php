@@ -50,6 +50,7 @@
         margin-bottom: 0 !important;
       }
     }
+    
 
     ::-webkit-scrollbar {
       display: none;
@@ -58,6 +59,20 @@
   <style>
     body {
       min-height: max(884px, 100dvh);
+    }
+    .modal {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      z-index: 60;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
     }
   </style>
   <link href="css/style.css" rel="stylesheet" />
@@ -118,13 +133,25 @@
       <button class="menu-akun" data-pesan="Belum ada riwayat perjalanan.">
         <span class="material-symbols-outlined">history</span> Riwayat Perjalanan
       </button>
-      <button class="menu-akun" id="tombol-keluar" style="color:#ba1a1a;">
+      <!-- popup keluar -->
+      <button type="button" class="menu-akun" id="logout_btn" style="color:#ba1a1a;">
         <span class="material-symbols-outlined">logout</span> Keluar
       </button>
-    </div>
+      <div id="logout_modal" class="modal">
+        <div class="flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl p-5 shadow-sm">
+          <P>Apakah anda ingin keluar?</P>
+          <div class="flex gap-space-lg">
+            <a href="login.php"><button  class="w-24 h-12 p-5 inline-flex items-center justify-center rounded-lg bg-green-700 hover:bg-green-900 text-on-secondary font-label-xl text-label-xl transition-colors"
+              >Ya</button></a>
+            <button id="no_btn" class=" w-24 h-12 p-5 inline-flex items-center justify-center rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-xl text-label-xl transition-colors"
+            >Tidak</button>
+          </div>
+        </div>
+      </div>
+      <!-- * -->
   </main>
   <nav
-    class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,41,66,0.06)]"
+    class="fixed bottom-0 inset-x-0 z-40 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,41,66,0.06)]"
     data-active-classes="text-secondary-container font-label-lg">
     <div class="flex justify-around items-center h-16 px-space-xs"><a
         class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
@@ -145,12 +172,21 @@
   </nav>
   <script src="js/script.js"></script>
   <script>
-    // Tombol keluar: tanya dulu, kalau ya keluar dari akun dan kembali ke halaman login
-    document.getElementById("tombol-keluar").addEventListener("click", function () {
-      if (confirm("Yakin ingin keluar?")) {
-        keluar();
+    var logout_modal = document.getElementById("logout_modal");
+    var logout_btn = document.getElementById("logout_btn");
+    var no_btn =document.getElementById("no_btn");
+
+    logout_btn.onclick = function(){
+      logout_modal.style.display = "flex";
+    }
+    no_btn.onclick = function(){
+      logout_modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == logout_modal) {
+        logout_modal.style.display = "none";
       }
-    });
+    }
   </script>
 </body>
 
