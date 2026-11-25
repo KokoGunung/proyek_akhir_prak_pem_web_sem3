@@ -117,7 +117,7 @@
   <link href="css/style.css" rel="stylesheet" />
 </head>
 
-<body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen">
+<body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen" style="padding: 0;">
   <main class="flex-1 flex items-center justify-center px-margin py-10">
     <div class="w-full max-w-sm flex flex-col gap-space-md">
       <div class="flex flex-col items-center gap-space-sm">

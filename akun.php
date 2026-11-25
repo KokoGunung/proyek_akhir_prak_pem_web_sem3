@@ -1,3 +1,7 @@
+<?php 
+  session_start();
+  $usr = $_SESSION["username"];
+?>
 <!DOCTYPE html>
 
 <html lang="id">
@@ -79,25 +83,7 @@
 </head>
 
 <body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen" data-halaman="akun">
-  <header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
-    <div class="h-16 px-gutter flex items-center justify-between"><a class="flex items-center gap-space-sm"
-        href="index.html">
-        <div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
-          <span class="material-symbols-outlined text-[20px] text-secondary-container">train</span></div>
-        <div class="flex flex-col"><span
-            class="font-label-caps text-label-caps uppercase tracking-wider text-secondary-container">KRL
-            Commuter</span><span class="font-title-station text-title-station text-primary-container leading-none">Jogja
-            - Solo</span></div>
-      </a>
-      <div class="flex items-center gap-space-xs"><button aria-label="Pemberitahuan"
-          class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors relative"
-          data-pesan="Belum ada pemberitahuan baru."><span
-            class="material-symbols-outlined text-[22px]">notifications</span><span
-            class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface"></span></button><a
-          aria-label="Akun saya" class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm ml-1"
-          href="akun.html"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a></div>
-    </div>
-  </header>
+  <?php include "header.php" ?>
   <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface">
     <div class="flex flex-col w-full px-margin pt-4 gap-space-md">
       <!-- Profil -->
@@ -106,8 +92,7 @@
           <span class="material-symbols-outlined text-on-primary text-[34px]">person</span>
         </div>
         <div>
-          <h1 class="font-headline-md text-headline-md text-primary" data-nama=""></h1>
-          <p class="font-body-sm text-body-sm text-on-surface-variant">Penumpang KRL Jogja - Solo</p>
+          <h1 class="font-headline-md text-headline-md text-primary"><?php echo $usr ?></h1>
         </div>
       </div>
       <!-- Info kartu KMT -->
@@ -117,74 +102,81 @@
         <p class="font-headline-md text-headline-md mt-2">Rp <span data-saldo=""></span></p>
         <p class="font-body-sm text-body-sm text-on-primary-container">Saldo aktif • Tarif Rp8.000 / trip</p>
         <a class="inline-flex items-center gap-1.5 mt-3 px-3 py-2 rounded-lg bg-secondary-container text-on-secondary font-label-lg text-label-lg"
-          href="topup.html"><span class="material-symbols-outlined text-[18px]">add_circle</span>Top Up Saldo</a>
+          href="topup.php"><span class="material-symbols-outlined text-[18px]">add_circle</span>Top Up Saldo</a>
       </div>
       <!-- Daftar menu -->
       <h2 class="font-headline-md text-headline-md text-primary">Menu</h2>
       <a class="menu-akun" href="etiket.html">
         <span class="material-symbols-outlined">qr_code_2</span> E-Tiket Saya
       </a>
-      <a class="menu-akun" href="jadwal.html">
-        <span class="material-symbols-outlined">schedule</span> Jadwal KRL
-      </a>
-      <a class="menu-akun" href="rute.html">
-        <span class="material-symbols-outlined">map</span> Peta Rute
-      </a>
       <button class="menu-akun" data-pesan="Belum ada riwayat perjalanan.">
         <span class="material-symbols-outlined">history</span> Riwayat Perjalanan
       </button>
+      <!-- popup hapus -->
+      <button id="del_btn" type="button" class="menu-akun" style="color:#ba1a1a;">
+        <span class="material-symbols-outlined">delete</span> Hapus Akun
+      </button>
+      <div id="del_modal" class="modal">
+        <div class="flex flex-col gap-space-lg bg-surface-container-lowest rounded-xl p-5 shadow-sm">
+          <P>Apakah anda yakin ingin menghapus akun anda?</P>
+          <div class="flex gap-space-lg self-center">
+            <a href="delete.php"><button  class="w-24 h-12 p-5 inline-flex items-center justify-center rounded-lg bg-[#ba1a1a] hover:bg-[#e31414] text-on-secondary font-label-xl text-label-xl transition-colors"
+              >Ya</button></a>
+            <button id="d_no_btn" class=" w-24 h-12 p-5 inline-flex items-center justify-center rounded-lg bg-gray-500 hover:bg-secondary-container text-on-secondary font-label-xl text-label-xl transition-colors"
+            >Tidak</button>
+          </div>
+        </div>
+      </div>
+      <!-- * -->
       <!-- popup keluar -->
-      <button type="button" class="menu-akun" id="logout_btn" style="color:#ba1a1a;">
+      <button type="button" class="menu-akun text-orange-900" id="logout_btn">
         <span class="material-symbols-outlined">logout</span> Keluar
       </button>
       <div id="logout_modal" class="modal">
-        <div class="flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl p-5 shadow-sm">
+        <div class="flex flex-col gap-space-lg bg-surface-container-lowest rounded-xl p-5 shadow-sm">
           <P>Apakah anda ingin keluar?</P>
           <div class="flex gap-space-lg">
             <a href="login.php"><button  class="w-24 h-12 p-5 inline-flex items-center justify-center rounded-lg bg-green-700 hover:bg-green-900 text-on-secondary font-label-xl text-label-xl transition-colors"
               >Ya</button></a>
-            <button id="no_btn" class=" w-24 h-12 p-5 inline-flex items-center justify-center rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-xl text-label-xl transition-colors"
+            <button id="l_no_btn" class=" w-24 h-12 p-5 inline-flex items-center justify-center rounded-lg bg-gray-500 hover:bg-secondary-container text-on-secondary font-label-xl text-label-xl transition-colors"
             >Tidak</button>
           </div>
         </div>
       </div>
       <!-- * -->
   </main>
-  <nav
-    class="fixed bottom-0 inset-x-0 z-40 pb-safe bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,41,66,0.06)]"
-    data-active-classes="text-secondary-container font-label-lg">
-    <div class="flex justify-around items-center h-16 px-space-xs"><a
-        class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
-        data-path="beranda" href="index.html"><span class="material-symbols-outlined text-[24px]">home</span><span
-          class="font-label-md text-label-md">Beranda</span></a><a
-        class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
-        data-path="jadwal" href="jadwal.html"><span class="material-symbols-outlined text-[24px]">schedule</span><span
-          class="font-label-md text-label-md">Jadwal</span></a><a
-        class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
-        data-path="rute" href="rute.html"><span class="material-symbols-outlined text-[24px]">map</span><span
-          class="font-label-md text-label-md">Rute</span></a><a
-        class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
-        data-path="e-tiket" href="etiket.html"><span class="material-symbols-outlined text-[24px]">qr_code_2</span><span
-          class="font-label-md text-label-md">E-Tiket</span></a><a aria-current="page"
-        class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full transition-colors text-secondary-container font-label-lg"
-        data-path="akun" href="akun.html"><span class="material-symbols-outlined text-[24px]">account_circle</span><span
-          class="font-label-md text-label-md">Akun</span></a></div>
-  </nav>
+  <?php include "nav.php" ?>
   <script src="js/script.js"></script>
-  <script>
-    var logout_modal = document.getElementById("logout_modal");
-    var logout_btn = document.getElementById("logout_btn");
-    var no_btn =document.getElementById("no_btn");
+  <script>    
+    set_nav("account_page");
 
+    //logout
+    const logout_modal = document.getElementById("logout_modal");
+    const logout_btn = document.getElementById("logout_btn");
+    const l_no_btn =document.getElementById("l_no_btn");
     logout_btn.onclick = function(){
       logout_modal.style.display = "flex";
     }
-    no_btn.onclick = function(){
+    l_no_btn.onclick = function(){
       logout_modal.style.display = "none";
     }
+    
+    //delete
+    const del_modal = document.getElementById("del_modal");
+    const del_btn = document.getElementById("del_btn");
+    const d_no_btn =document.getElementById("d_no_btn");
+    del_btn.onclick = function(){
+      del_modal.style.display = "flex";
+    }
+    d_no_btn.onclick = function(){
+      del_modal.style.display = "none";
+    }
+
     window.onclick = function(event) {
       if (event.target == logout_modal) {
         logout_modal.style.display = "none";
+      }else if(event.target == del_modal){
+        del_modal.style.display = "none";
       }
     }
   </script>

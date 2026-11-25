@@ -15,6 +15,7 @@
             if($dbpw == $pw){
                 session_start();
                 $_SESSION["status"] = "active";
+                $_SESSION["username"] = $usr;
                 header("Location: index.php");
                 exit;
             }else{
