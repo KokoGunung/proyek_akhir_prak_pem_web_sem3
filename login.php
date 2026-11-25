@@ -1,3 +1,28 @@
+<?php
+  $status = "";
+  $failedusr = "";
+  $failmsg = "";
+  if(session_status() == PHP_SESSION_NONE){
+    session_start();
+    session_unset();
+    session_destroy();
+  }
+  if(isset($_GET["status"])){
+    $status = $_GET["status"];
+    if(empty(trim($status)) || ($status != "pwfailed" && $status != "frmfailed" && $status != "usrfailed")){
+      header("Location: login.php");
+      exit;
+    }
+    $failedusr = $_GET["usr"];
+    if($status == "pwfailed"){
+      $failmsg = "Password yang anda masukkan salah";
+    }else if($status == "frmfailed"){
+      $failmsg = "Tolong isi Nama pengguna dan Kata sandi";
+    }else if($status == "usrfailed"){
+      $failmsg = "Username yang anda masukkan tidak ditemukan";
+    }
+  }
+?>
 <!DOCTYPE html>
 
 <html lang="id">
@@ -73,37 +98,25 @@
         </div>
         <h1 class="font-headline-lg text-headline-lg text-primary">KRL Jogja - Solo</h1>
       </div>
-      <form id="form-login" class="flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl p-5 shadow-sm"
-        novalidate>
+      <form action="login_check.php" method="post" id="form-login" class="flex flex-col gap-space-sm bg-surface-container-lowest rounded-xl p-5 shadow-sm">
         <label class="flex flex-col gap-1.5">
           <span class="font-label-md text-label-md text-on-surface-variant">Nama pengguna</span>
-          <input id="nama" type="text" autocomplete="username"
-            class="w-full h-12 px-4 rounded-lg bg-surface border border-outline-variant font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary-container" />
+          <input id="nama" type="text" autocomplete="username" name="username"
+            class="w-full h-12 px-4 rounded-lg bg-surface border border-outline-variant font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary-container" value="<?php echo $failedusr ?>"/>
         </label>
         <label class="flex flex-col gap-1.5">
           <span class="font-label-md text-label-md text-on-surface-variant">Kata sandi</span>
-          <input id="sandi" type="password" autocomplete="current-password"
+          <input id="sandi" type="password" autocomplete="current-password" name="password"
             class="w-full h-12 px-4 rounded-lg bg-surface border border-outline-variant font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary-container" />
         </label>
-        <p id="pesan-error" class="hidden font-body-sm text-body-sm" style="color:#ba1a1a;"></p>
+        <?php if($failmsg != ""){ ?>
+          <p id="pesan-error" class="font-body-sm text-body-sm" style="color:#ba1a1a;"><?php echo $failmsg ?></p> <?php } ?>
         <button type="submit"
           class="h-12 rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-lg text-label-lg transition-colors">Masuk</button>
-      </form>
+        <p class="self-center font-label-lg text-label-lg text-on-surface-variant" style="margin-top:1rem">Jika belum memiliki akun, silakan daftar <a href="index.php" style="color: blue; text-decoration: underline;">disini</a></p>
+        </form>
     </div>
   </main>
-  <script>
-    document.getElementById("form-login").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var pesan = masuk(document.getElementById("nama").value, document.getElementById("sandi").value);
-      var elPesan = document.getElementById("pesan-error");
-      if (pesan) {
-        elPesan.textContent = pesan;
-        elPesan.classList.remove("hidden");
-      } else {
-        window.location.href = "index.html";
-      }
-    });
-  </script>
 </body>
 
 </html>
