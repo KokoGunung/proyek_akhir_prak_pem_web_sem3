@@ -13,7 +13,10 @@
         $stmt->bind_result($dbpw);
         if($stmt->fetch()){
             if($dbpw == $pw){
-                echo "success";
+                session_start();
+                $_SESSION["status"] = "active";
+                header("Location: index.php");
+                exit;
             }else{
                 header("Location: login.php?status=pwfailed&usr=$usr");
             }

@@ -2,11 +2,9 @@
   $status = "";
   $failedusr = "";
   $failmsg = "";
-  if(session_status() == PHP_SESSION_NONE){
-    session_start();
-    session_unset();
-    session_destroy();
-  }
+  session_start();
+  session_unset();
+  session_destroy();
   if(isset($_GET["status"])){
     $status = $_GET["status"];
     if(empty(trim($status)) || ($status != "pwfailed" && $status != "frmfailed" && $status != "usrfailed")){
@@ -15,11 +13,11 @@
     }
     $failedusr = $_GET["usr"];
     if($status == "pwfailed"){
-      $failmsg = "Password yang anda masukkan salah";
+      $failmsg = "Kata sandi yang anda masukkan salah";
     }else if($status == "frmfailed"){
       $failmsg = "Tolong isi Nama pengguna dan Kata sandi";
     }else if($status == "usrfailed"){
-      $failmsg = "Username yang anda masukkan tidak ditemukan";
+      $failmsg = "Nama pengguna yang anda masukkan tidak ditemukan";
     }
   }
 ?>
@@ -113,7 +111,7 @@
           <p id="pesan-error" class="font-body-sm text-body-sm" style="color:#ba1a1a;"><?php echo $failmsg ?></p> <?php } ?>
         <button type="submit"
           class="h-12 rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-lg text-label-lg transition-colors">Masuk</button>
-        <p class="self-center font-label-lg text-label-lg text-on-surface-variant" style="margin-top:1rem">Jika belum memiliki akun, silakan daftar <a href="index.php" style="color: blue; text-decoration: underline;">disini</a></p>
+        <p class="self-center font-label-lg text-label-lg text-on-surface-variant" style="margin-top:1rem">Belum memiliki akun? Daftar <a href="daftar.php" style="color: blue; text-decoration: underline;">di sini</a></p>
         </form>
     </div>
   </main>
