@@ -104,13 +104,6 @@
           href="topup.php"><span class="material-symbols-outlined text-[18px]">add_circle</span>Top Up Saldo</a>
       </div>
       <!-- Daftar menu -->
-      <h2 class="font-headline-md text-headline-md text-primary">Menu</h2>
-      <a class="menu-akun" href="etiket.html">
-        <span class="material-symbols-outlined">qr_code_2</span> E-Tiket Saya
-      </a>
-      <button class="menu-akun" data-pesan="Belum ada riwayat perjalanan.">
-        <span class="material-symbols-outlined">history</span> Riwayat Perjalanan
-      </button>
       <!-- popup hapus -->
       <button id="del_btn" type="button" class="menu-akun" style="color:#ba1a1a;">
         <span class="material-symbols-outlined">delete</span> Hapus Akun

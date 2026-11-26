@@ -24,15 +24,31 @@
             Rute
         </span>
         </a>
-        
-        <a id="eticket_page" class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
-            data-path="e-tiket" href="etiket.php">
-        <span class="material-symbols-outlined text-[24px]">qr_code_2</span>
+
+        <a id="buy_page" class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
+            data-path="e-tiket" href="beli.php">
+        <span class="material-symbols-outlined text-[24px]">payments</span>
         <span class="font-label-md text-label-md">
-            E-Tiket
+            Beli E-Tiket
         </span>
         </a>
         
+        <a id="eticket_page" class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
+            data-path="e-tiket" href="etiket.php">
+        <span class="material-symbols-outlined text-[24px]">transit_ticket</span>
+        <span class="font-label-md text-label-md">
+            E-Tiket Saya
+        </span>
+        </a>
+        
+        <a id="history_page" class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
+            data-path="akun" href="riwayat.php">
+        <span class="material-symbols-outlined text-[24px]">history</span>
+        <span class="font-label-md text-label-md">
+            Riwayat tiket
+        </span>
+        </a>
+
         <a id="account_page" class="flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-on-surface-variant hover:text-primary transition-colors"
             data-path="akun" href="akun.php">
         <span class="material-symbols-outlined text-[24px]">account_circle</span>

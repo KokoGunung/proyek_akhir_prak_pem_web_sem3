@@ -77,17 +77,13 @@
 </head>
 
 <body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen" data-halaman="beranda">
-  <?php include "header.php" ?>
+  <?php include "header.php"; ?>
   <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface">
     <div class="flex flex-col w-full pb-6 space-y-4">
       <!-- Greeting & Account Banner -->
       <div class="px-margin pt-2 flex items-center justify-between">
         <div class="flex flex-col">
           <h1 class="font-headline-md text-headline-md text-primary leading-tight">Halo, <span><?php echo $usr ?></span></h1>
-        </div>
-        <div class="flex items-center gap-1.5 bg-surface-container-high px-2.5 py-1 rounded-full shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
-          <span class="font-label-md text-label-md text-primary-container">KMT Terhubung</span>
         </div>
       </div>
       <!-- KMT Digital Wallet Card -->
@@ -110,16 +106,13 @@
                 <span class="font-label-caps text-label-caps text-surface-container tracking-widest uppercase">Kartu
                   Multi Trip (KMT)</span>
               </div>
-              <span
-                class="font-data-mono text-label-md text-on-primary-container bg-surface-container-lowest/10 px-2 py-0.5 rounded-full">••••
-                8920</span>
             </div>
             <!-- Balance Info -->
             <div class="flex items-baseline justify-between pt-1">
               <div>
                 <span class="font-body-sm text-body-sm text-surface-variant">Saldo Kartu Digital</span>
                 <div class="flex items-baseline gap-1 mt-0.5">
-                  <span class="font-label-md text-label-md text-secondary-container font-semibold">Rp</span>
+                  <span class="font-label-md text-label-md text-secondary-container font-semibold">Rp <?php echo $_SESSION["saldo"] ?></span>
                   <span class="font-headline-xl-mobile text-headline-xl-mobile tracking-tight" data-saldo=""></span>
                 </div>
               </div>
@@ -132,14 +125,9 @@
             <!-- Quick Wallet CTAs -->
             <div class="pt-2 flex items-center gap-2">
               <a class="flex-1 flex items-center justify-center gap-1.5 bg-secondary-container text-on-primary h-10 rounded-lg font-label-lg text-label-lg hover:brightness-105 active:scale-[0.985] transition-all shadow-sm"
-                href="topup.html">
+                href="topup.php">
                 <span class="material-symbols-outlined text-[18px]">add_circle</span>
                 <span>Isi Saldo Cepat</span>
-              </a>
-              <a class="flex-1 flex items-center justify-center gap-1.5 bg-surface-container-lowest/15 hover:bg-surface-container-lowest/20 text-on-primary h-10 rounded-lg font-label-lg text-label-lg active:scale-[0.985] transition-all"
-                href="etiket.html">
-                <span class="material-symbols-outlined text-[18px]">receipt_long</span>
-                <span>Riwayat Tap</span>
               </a>
             </div>
           </div>

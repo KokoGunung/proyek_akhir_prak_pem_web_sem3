@@ -15,11 +15,14 @@
             $stmt->close();
             if($dbpw == $pw){
                 session_start();
-                $query = mysqli_query($conn, "select saldo from accounts where username='$usr'");
-                $saldo = mysqli_fetch_array($query);
+                $query_saldo = mysqli_query($conn, "select * from accounts where username='$usr'");
+                $query_stasiun = mysqli_query($conn, "select * from stasiun");
+                $usr_data = mysqli_fetch_array($query_saldo);
                 $_SESSION["status"] = "active";
-                $_SESSION["username"] = $usr;
-                $_SESSION["saldo"] = $saldo["saldo"];
+                $_SESSION["id"] = (int) $usr_data["id"];
+                $_SESSION["username"] = $usr_data["username"];
+                $_SESSION["saldo"] = (int) $usr_data["saldo"];
+                $_SESSION["stasiun"] = mysqli_fetch_all($query_stasiun, MYSQLI_ASSOC);
                 header("Location: index.php");
                 exit;
             }else{

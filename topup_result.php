@@ -14,9 +14,8 @@
         $addsaldo = $_POST["addsaldo"];
         $usr = $_SESSION["username"];
     };
-    $query = mysqli_query($conn, "update accounts set saldo=saldo+$addsaldo where username='$usr'");
-    $query_saldo = mysqli_query($conn, "select saldo from accounts where username='$usr'");
-    $_SESSION["saldo"] = mysqli_fetch_array($query_saldo)["saldo"];
+    mysqli_query($conn, "update accounts set saldo=saldo+$addsaldo where username='$usr'");
+    $_SESSION["saldo"] += $addsaldo;
 ?>
 
 <!DOCTYPE html>
@@ -88,11 +87,11 @@
 <body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen">
   <?php include "header.php" ?>
   <main class="flex-1 flex flex-col relative w-full h-full pt-16 pb-24 bg-surface items-center justify-center">
-    <div class="flex flex-col bg-surface-container p-10 rounded-lg gap-space-md items-center justify-center">
+    <div class="flex flex-col bg-surface-container-lowest p-10 rounded-lg gap-space-md items-center justify-center">
       <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary">Saldo berhasil ditambahkan!</h1>
       <div class="flex w-full items-center justify-center gap-space-lg">
         <a href="index.php" class="w-full">
-        <button class="flex items-center justify-center gap-space-sm
+        <button class="flex items-center justify-center gap-space-sm    
                 w-full h-12 rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-xl text-label-xl transition-colors"
           ><span class="material-symbols-outlined text-[24px]">home</span>Beranda</button>
         </a>

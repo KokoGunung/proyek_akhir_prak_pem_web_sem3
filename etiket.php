@@ -1,3 +1,13 @@
+<?php 
+  include "conn.php";
+  session_start();
+  $usr_id = $_SESSION["id"];
+  $query = mysqli_query($conn, 
+  "select e.total, e.tanggal, e.kode, s1.nama as asal, s2.nama as tujuan from etiket e 
+  inner join stasiun s1 on e.asal = s1.id 
+  inner join stasiun s2 on e.tujuan = s2.id 
+  where tanggal >= curdate() and acc_id=$usr_id");
+?>
 <!DOCTYPE html>
 
 <html lang="id">
@@ -63,77 +73,57 @@
   <link href="css/style.css" rel="stylesheet" />
 </head>
 
-<body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen" data-halaman="etiket">
+<body class="bg-background font-body-md text-on-surface antialiased flex flex-col min-h-screen">
   <?php include "header.php" ?>
   <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface">
-    <div class="flex flex-col w-full px-margin pb-6 gap-space-md">
-      <div
-        class="relative overflow-hidden rounded-xl bg-primary-container text-on-primary p-space-lg shadow-md flex flex-col gap-space-md">
-        <div class="flex items-center justify-between relative z-10">
-          <div class="flex items-center gap-space-xs">
-            <div class="w-7 h-7 rounded-lg bg-surface-container-lowest/15 flex items-center justify-center">
-              <span class="material-symbols-outlined text-secondary-container text-[18px]">contactless</span>
-            </div>
+    <div class="flex w-full px-margin pb-6 pt-6 gap-space-md">
+
+      <div class="flex flex-col w-1/2 gap-space-md">
+        <?php while($data = mysqli_fetch_array($query)){ ?>
+        <div data-kode="<?php echo $data["kode"] ?>" class="tiket_container bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+          <div class="flex items-center justify-between pt-1">
             <div class="flex flex-col">
-              <span class="font-title-station text-title-station leading-none">Kartu Multi Trip</span>
+              <span class="font-body-md text-body-lg font-semibold text-on-surface leading-tight"><?php echo $data["asal"] ?></span>
             </div>
-          </div>
-        </div>
-        <div class="flex items-end justify-between relative z-10 pt-1">
-          <div class="flex flex-col">
-            <span class="font-label-md text-label-md text-on-primary-container">Saldo</span>
-            <div class="flex items-baseline gap-1">
-              <span class="font-title-station text-title-station text-secondary-fixed">Rp</span>
-              <span class="font-headline-xl-mobile text-headline-xl-mobile font-bold tracking-tight"
-                data-saldo=""></span>
-            </div>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 gap-space-sm pt-2 relative z-10">
-          <a class="flex items-center justify-center gap-space-xs py-2.5 px-3 rounded-lg bg-surface-container-lowest text-primary hover:bg-surface-container transition-all active:scale-[0.98] shadow-sm"
-            href="topup.html">
-            <span class="material-symbols-outlined text-[18px] text-secondary">add_circle</span>
-            <span class="font-label-lg text-label-lg font-semibold">Top Up Saldo</span>
-          </a>
-        </div>
-      </div>
-      <div class="flex flex-col items-center gap-space-md bg-surface-container-lowest rounded-xl p-space-lg shadow-md">
-        <div class="w-full flex items-center gap-space-xs">
-          <span class="material-symbols-outlined text-secondary text-[22px]"
-            style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
-          <span class="font-title-station text-title-station text-primary-container">Kode E-Tiket</span>
-        </div>
-        <div class="w-full py-10 rounded-xl bg-surface-container-low flex items-center justify-center">
-          <span class="font-data-mono font-bold text-primary-container" data-kode=""
-            style="font-size:44px;line-height:52px;letter-spacing:0.16em;padding-left:0.16em;"></span>
-        </div>
-        <p class="font-body-md text-body-md text-on-surface-variant text-center">Sebutkan kode ini kepada petugas untuk
-          dikonfirmasi.</p>
-      </div>
-      <div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
-        <div class="flex items-center justify-between pt-1">
-          <div class="flex flex-col">
-            <span class="font-data-mono text-title-station text-primary-container font-bold">YK</span>
-            <span class="font-body-md text-body-md font-semibold text-on-surface leading-tight">Tugu Yogyakarta</span>
-          </div>
-          <div class="flex flex-col items-center px-2 flex-1 max-w-[120px]">
-            <div class="w-full flex items-center justify-between">
-              <div class="w-2 h-2 rounded-full bg-primary-container"></div>
-              <div class="flex-1 h-0.5 bg-surface-container-highest mx-1 relative">
-                <span
-                  class="material-symbols-outlined text-[14px] text-secondary absolute -top-1.5 left-1/2 -translate-x-1/2">arrow_forward</span>
+            <div class="flex flex-col items-center px-2 flex-1 max-w-[120px]">
+              <div class="w-full flex items-center justify-between">
+                <div class="w-2 h-2 rounded-full bg-primary-container"></div>
+                <div class="flex-1 h-0.5 bg-surface-container-highest mx-1 relative">
+                  <span
+                    class="material-symbols-outlined text-[14px] text-secondary absolute -top-1.5 left-1/2 -translate-x-1/2">arrow_forward</span>
+                </div>
+                <div class="w-2 h-2 rounded-full bg-secondary-container"></div>
               </div>
-              <div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+            </div>
+            <div class="flex flex-col items-end text-right">
+              <span class="font-body-md text-body-lg font-semibold text-on-surface leading-tight"><?php echo $data["tujuan"] ?></span>
             </div>
           </div>
-          <div class="flex flex-col items-end text-right">
-            <span class="font-data-mono text-title-station text-primary-container font-bold">SLO</span>
-            <span class="font-body-md text-body-md font-semibold text-on-surface leading-tight">Solo Balapan</span>
-          </div>
+            <div class="flex items-center justify-between pt-2 bg-surface-container-low px-space-sm py-2 rounded-lg">
+              <span class="font-body-sm text-body-sm text-on-surface-variant">Tarif</span>
+              <span class="font-label-lg text-label-lg text-secondary font-bold">Rp <?php echo $data["total"] ?></span>
+            </div>
+            <div class="flex justify-between">
+                <p class="pt-2 font-body-md text-body-md text-on-surface-variant"><?php echo $data["tanggal"] ?></p>
+                <p class="pt-2 font-body-md text-body-md text-on-surface-variant">Aktif</p>
+            </div>
         </div>
-        <div class="flex items-center justify-between pt-2 bg-surface-container-low px-space-sm py-2 rounded-lg">
-          <span class="font-body-sm text-body-sm text-on-surface-variant">Tarif</span>
-          <span class="font-label-lg text-label-lg text-secondary font-bold">Rp 8.000</span>
+        <?php } ?>
+      </div>
+
+      <div>
+        <div class="flex flex-col items-center gap-space-md bg-surface-container-lowest rounded-xl p-space-lg shadow-md">
+          <div class="w-full flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-secondary text-[22px]"
+              style="font-variation-settings: 'FILL' 1;">transit_ticket</span>
+            <span class="font-title-station text-title-station text-primary-container">Kode E-Tiket</span>
+          </div>
+          <div class="w-full py-10 rounded-xl bg-surface-container-low flex items-center justify-center">
+            <span class="font-data-mono font-bold text-primary-container" id="tampil_kode"
+              style="font-size:44px;line-height:52px;letter-spacing:0.16em;padding-left:0.16em;"></span>
+          </div>
+          <p class="font-body-md text-body-md text-on-surface-variant text-center">Sebutkan kode ini kepada petugas untuk
+            dikonfirmasi.</p>
         </div>
       </div>
     </div>
@@ -142,6 +132,20 @@
   <script src="js/script.js"></script>
   <script>
     set_nav("eticket_page");
+    const kode_label = document.getElementById("tampil_kode");
+    const container_arr = document.querySelectorAll('.tiket_container');
+
+    container_arr.forEach((container) => {
+      container.addEventListener('click', () => {
+        container_arr.forEach((container_) => {
+          container_.classList.remove("bg-gray-300");
+          container_.classList.add("bg-surface-container-lowest");
+        })
+        kode_label.textContent = container.getAttribute("data-kode");
+        container.classList.remove("bg-surface-container-lowest");
+        container.classList.add("bg-gray-300");
+      });
+    });
   </script>
 </body>
 
