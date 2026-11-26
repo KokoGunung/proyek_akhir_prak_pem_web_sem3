@@ -79,7 +79,7 @@
   <?php include "header.php" ?>
   <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface">
     <div class="flex flex-col w-full px-margin pt-4 gap-space-md">
-      <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary">Riwayat Tiket</h1>
+      <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary">Riwayat E-Tiket</h1>
       <div id="daftar" class="flex flex-col gap-space-sm"></div>
       <p id="kosong" class="hidden text-center text-on-surface-variant font-body-md text-body-md py-10">Belum ada
         riwayat perjalanan.</p>

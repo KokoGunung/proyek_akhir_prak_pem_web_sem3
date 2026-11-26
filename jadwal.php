@@ -1,3 +1,20 @@
+<?php 
+  include "conn.php";
+  $jadwal;
+  $arah;
+  if(!isset($_GET["arah"])){
+    header("Location: jadwal.php?arah=YP");
+    exit;
+  }else{
+    $arah = $_GET["arah"];
+    $query;
+    if($arah != "YP" && $arah != "PY"){
+      header("Locatoin: jadwal.php?arah=YP");
+      exit;
+    }
+    $query = mysqli_query($conn, "select waktu from jadwal where jalur='$arah'");
+  }
+?>
 <!DOCTYPE html>
 
 <html lang="id">
@@ -70,247 +87,48 @@
       <!-- Judul -->
       <section class="px-gutter pt-space-md">
         <h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary">Jadwal KRL</h1>
-        <p class="font-body-md text-body-md text-on-surface-variant mt-1">Tarif flat Rp 8.000 per penumpang</p>
       </section>
-      <!-- Pilih arah -->
-      <section class="px-gutter mt-space-md">
-        <div class="p-1 rounded-xl bg-surface-container flex gap-1">
-          <button
-            class="flex-1 py-2.5 px-3 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm flex items-center justify-center"
-            id="tab-dir-1" onclick="switchDirection(1)">Yogyakarta → Solo</button>
-          <button
-            class="flex-1 py-2.5 px-3 rounded-lg text-on-surface-variant font-label-md text-label-md hover:text-primary flex items-center justify-center"
-            id="tab-dir-2" onclick="switchDirection(2)">Solo → Yogyakarta</button>
-        </div>
-      </section>
-      <!-- Filter waktu -->
-      <section class="px-gutter mt-space-md">
-        <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-          <button
-            class="time-filter-btn shrink-0 px-4 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md"
-            onclick="filterTime('all', this)">Semua</button>
-          <button
-            class="time-filter-btn shrink-0 px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md"
-            onclick="filterTime('pagi', this)">Pagi · 05–10</button>
-          <button
-            class="time-filter-btn shrink-0 px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md"
-            onclick="filterTime('siang', this)">Siang · 10–15</button>
-          <button
-            class="time-filter-btn shrink-0 px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md"
-            onclick="filterTime('sore', this)">Sore · 15–22</button>
-        </div>
-        <p class="font-body-sm text-body-sm text-on-surface-variant mt-2" id="schedule-count-label">6 perjalanan</p>
-      </section>
+      
+        <div class="flex items-center justify-center w-1/2 self-center gap-space-sm ">
+            <a href="jadwal.php?arah=<?php if($arah == "YP"){ echo "PY"; }else{ echo "YP"; } ?>">
+              <button id="arah_btn" type="button" class="self-center flex">
+                <span class="material-symbols-outlined text-[24px] self-center">swap_vert</span>
+              </button>
+            </a>
+              <?php if($arah == "YP"){ ?> 
+                <p>Yogyakarta -> Palur</p> 
+              <?php }else{ ?> 
+                <p>Palur -> Yogyakarta</p>
+              <?php } ?>
+          </div>
+
+
+
+      <div class="flex w-full items-center justify-center">
       <!-- Daftar jadwal -->
-      <section class="mt-space-sm px-gutter flex flex-col gap-space-sm" id="schedule-container">
-        <div class="schedule-card bg-surface-container-lowest rounded-xl shadow-sm p-4 opacity-60" data-slot="pagi">
-          <div class="flex items-center">
-
-            <span
-              class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-caps text-label-caps flex items-center gap-1"><span
-                class="material-symbols-outlined text-[14px]">check_circle</span> Selesai</span>
-          </div>
-          <div class="flex items-center justify-between gap-3 mt-4">
-            <div class="flex flex-col">
-              <span class="font-headline-md text-headline-md text-on-surface-variant leading-none">06:10</span>
-              <span class="st-origin font-label-md text-label-md text-on-surface-variant mt-1.5">Yogyakarta (YK)</span>
-            </div>
-            <div class="flex items-center flex-1 min-w-[40px] text-outline-variant">
-              <div class="h-0.5 flex-1 bg-surface-container-highest"></div>
-              <span class="material-symbols-outlined text-[20px] text-on-surface-variant">arrow_forward</span>
-            </div>
-            <div class="flex flex-col items-end">
-              <span class="font-headline-md text-headline-md text-on-surface-variant leading-none">07:18</span>
-              <span class="st-dest font-label-md text-label-md text-on-surface-variant mt-1.5">Solo Balapan (SLO)</span>
-            </div>
-          </div>
-        </div>
-        <div class="schedule-card bg-surface-container-lowest rounded-xl shadow-sm p-4" data-slot="pagi">
-          <div class="flex items-center">
-
-            <span
-              class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-caps text-label-caps flex items-center gap-1"><span
-                class="material-symbols-outlined text-[14px]">directions_subway</span> Sedang Berjalan</span>
-          </div>
-          <div class="flex items-center justify-between gap-3 mt-4">
-            <div class="flex flex-col">
-              <span class="font-headline-md text-headline-md text-primary leading-none">07:15</span>
-              <span class="st-origin font-label-md text-label-md text-on-surface-variant mt-1.5">Yogyakarta (YK)</span>
-            </div>
-            <div class="flex items-center flex-1 min-w-[40px] text-outline-variant">
-              <div class="h-0.5 flex-1 bg-surface-container-highest"></div>
-              <span class="material-symbols-outlined text-[20px] text-on-surface-variant">arrow_forward</span>
-            </div>
-            <div class="flex flex-col items-end">
-              <span class="font-headline-md text-headline-md text-primary leading-none">08:23</span>
-              <span class="st-dest font-label-md text-label-md text-on-surface-variant mt-1.5">Solo Balapan (SLO)</span>
-            </div>
-          </div>
-        </div>
-        <div class="schedule-card bg-surface-container-lowest rounded-xl shadow-sm p-4 ring-2 ring-secondary-container"
-          data-slot="pagi">
-          <div class="flex items-center">
-
-            <span
-              class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary font-label-caps text-label-caps flex items-center gap-1"><span
-                class="material-symbols-outlined text-[14px]">schedule</span> Terdekat</span>
-          </div>
-          <div class="flex items-center justify-between gap-3 mt-4">
-            <div class="flex flex-col">
-              <span class="font-headline-md text-headline-md text-primary leading-none">08:50</span>
-              <span class="st-origin font-label-md text-label-md text-on-surface-variant mt-1.5">Yogyakarta (YK)</span>
-            </div>
-            <div class="flex items-center flex-1 min-w-[40px] text-outline-variant">
-              <div class="h-0.5 flex-1 bg-surface-container-highest"></div>
-              <span class="material-symbols-outlined text-[20px] text-on-surface-variant">arrow_forward</span>
-            </div>
-            <div class="flex flex-col items-end">
-              <span class="font-headline-md text-headline-md text-primary leading-none">09:58</span>
-              <span class="st-dest font-label-md text-label-md text-on-surface-variant mt-1.5">Solo Balapan (SLO)</span>
-            </div>
-          </div>
-          <button
-            class="mt-4 w-full h-11 rounded-lg bg-secondary-container hover:bg-secondary text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-2 transition-colors"
-            onclick="handleTicketPrep()">
-            <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
-            <span>Siapkan E-Tiket</span>
-          </button>
-        </div>
+      <section class="mt-space-sm px-gutter w-3/4 flex flex-col gap-space-sm" id="schedule-container">
+        <?php while($data=mysqli_fetch_array($query)){
+            $time = new DateTime($data["waktu"]);
+            $time1 = new DateTime($time->format("H:i"));
+            $time1->modify("+1 hour +8 minutes");
+        ?>
         <div class="schedule-card bg-surface-container-lowest rounded-xl shadow-sm p-4" data-slot="siang">
-
           <div class="flex items-center justify-between gap-3">
             <div class="flex flex-col">
-              <span class="font-headline-md text-headline-md text-primary leading-none">10:20</span>
-              <span class="st-origin font-label-md text-label-md text-on-surface-variant mt-1.5">Yogyakarta (YK)</span>
+              <span class="font-headline-md text-headline-md text-primary leading-none"><?php echo $time->format("H:i") ?></span>
             </div>
             <div class="flex items-center flex-1 min-w-[40px] text-outline-variant">
               <div class="h-0.5 flex-1 bg-surface-container-highest"></div>
               <span class="material-symbols-outlined text-[20px] text-on-surface-variant">arrow_forward</span>
             </div>
             <div class="flex flex-col items-end">
-              <span class="font-headline-md text-headline-md text-primary leading-none">11:28</span>
-              <span class="st-dest font-label-md text-label-md text-on-surface-variant mt-1.5">Solo Balapan (SLO)</span>
+              <span class="font-headline-md text-headline-md text-primary leading-none"><?php echo $time1->format("H:i") ?></span>
             </div>
           </div>
         </div>
-        <div class="schedule-card bg-surface-container-lowest rounded-xl shadow-sm p-4" data-slot="siang">
-
-          <div class="flex items-center justify-between gap-3">
-            <div class="flex flex-col">
-              <span class="font-headline-md text-headline-md text-primary leading-none">12:05</span>
-              <span class="st-origin font-label-md text-label-md text-on-surface-variant mt-1.5">Yogyakarta (YK)</span>
-            </div>
-            <div class="flex items-center flex-1 min-w-[40px] text-outline-variant">
-              <div class="h-0.5 flex-1 bg-surface-container-highest"></div>
-              <span class="material-symbols-outlined text-[20px] text-on-surface-variant">arrow_forward</span>
-            </div>
-            <div class="flex flex-col items-end">
-              <span class="font-headline-md text-headline-md text-primary leading-none">13:13</span>
-              <span class="st-dest font-label-md text-label-md text-on-surface-variant mt-1.5">Solo Balapan (SLO)</span>
-            </div>
-          </div>
-        </div>
-        <div class="schedule-card bg-surface-container-lowest rounded-xl shadow-sm p-4" data-slot="sore">
-
-          <div class="flex items-center justify-between gap-3">
-            <div class="flex flex-col">
-              <span class="font-headline-md text-headline-md text-primary leading-none">14:15</span>
-              <span class="st-origin font-label-md text-label-md text-on-surface-variant mt-1.5">Yogyakarta (YK)</span>
-            </div>
-            <div class="flex items-center flex-1 min-w-[40px] text-outline-variant">
-              <div class="h-0.5 flex-1 bg-surface-container-highest"></div>
-              <span class="material-symbols-outlined text-[20px] text-on-surface-variant">arrow_forward</span>
-            </div>
-            <div class="flex flex-col items-end">
-              <span class="font-headline-md text-headline-md text-primary leading-none">15:23</span>
-              <span class="st-dest font-label-md text-label-md text-on-surface-variant mt-1.5">Solo Balapan (SLO)</span>
-            </div>
-          </div>
-        </div>
+        <?php } ?>
       </section>
-      <!-- Tampilan kosong saat filter tidak menemukan jadwal -->
-      <div class="hidden px-gutter py-12 flex-col items-center justify-center text-center" id="filter-empty-state">
-        <span class="font-headline-md text-headline-md text-primary mb-1">Tidak ada perjalanan</span>
-        <p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">Tidak ada jadwal pada rentang waktu ini.
-          Coba pilih waktu lain.</p>
-        <button class="mt-4 px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md"
-          onclick="filterTime('all', document.querySelectorAll('.time-filter-btn')[0])">Tampilkan semua</button>
       </div>
-      <!-- Pesan singkat -->
-      <div
-        class="fixed bottom-20 inset-x-6 z-50 transform translate-y-32 opacity-0 pointer-events-none transition-all duration-300"
-        id="action-toast">
-        <div class="bg-primary text-on-primary px-4 py-3 rounded-xl shadow-xl flex items-center justify-between gap-3">
-          <div class="flex items-center gap-2.5 min-w-0">
-            <span class="material-symbols-outlined text-secondary-container text-[20px]">qr_code_2</span>
-            <span class="font-body-sm text-body-sm text-on-primary truncate" id="toast-message"></span>
-          </div>
-          <button class="text-on-primary-container hover:text-on-primary" onclick="dismissToast()">
-            <span class="material-symbols-outlined text-[18px]">close</span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <script>
-      var TAB_ON = "flex-1 py-2.5 px-3 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm flex items-center justify-center";
-      var TAB_OFF = "flex-1 py-2.5 px-3 rounded-lg text-on-surface-variant font-label-md text-label-md hover:text-primary flex items-center justify-center";
-      var CHIP_ON = "time-filter-btn shrink-0 px-4 py-1.5 rounded-full bg-primary-container text-on-primary font-label-md text-label-md";
-      var CHIP_OFF = "time-filter-btn shrink-0 px-4 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-primary font-label-md text-label-md";
-
-      var ARAH = {
-        1: { asal: "Yogyakarta (YK)", tujuan: "Solo Balapan (SLO)" },
-        2: { asal: "Solo Balapan (SLO)", tujuan: "Yogyakarta (YK)" }
-      };
-
-      // Ganti arah perjalanan: tombol aktif dan nama stasiun di semua kartu ikut berubah
-      function switchDirection(dir) {
-        document.getElementById('tab-dir-1').className = dir === 1 ? TAB_ON : TAB_OFF;
-        document.getElementById('tab-dir-2').className = dir === 2 ? TAB_ON : TAB_OFF;
-        document.querySelectorAll('.st-origin').forEach(function (el) { el.textContent = ARAH[dir].asal; });
-        document.querySelectorAll('.st-dest').forEach(function (el) { el.textContent = ARAH[dir].tujuan; });
-      }
-
-      // Saring jadwal berdasarkan waktu
-      function filterTime(slot, buttonEl) {
-        document.querySelectorAll('.time-filter-btn').forEach(function (btn) { btn.className = CHIP_OFF; });
-        buttonEl.className = CHIP_ON;
-
-        var jumlah = 0;
-        document.querySelectorAll('.schedule-card').forEach(function (card) {
-          var tampil = slot === 'all' || card.getAttribute('data-slot') === slot;
-          card.style.display = tampil ? 'block' : 'none';
-          if (tampil) jumlah++;
-        });
-
-        var kosong = document.getElementById('filter-empty-state');
-        kosong.classList.toggle('hidden', jumlah !== 0);
-        kosong.classList.toggle('flex', jumlah === 0);
-        document.getElementById('schedule-count-label').textContent = jumlah + ' perjalanan';
-      }
-
-      // Tombol "Siapkan E-Tiket": buat kode baru, tampilkan pesan, lalu pindah ke halaman e-tiket
-      function handleTicketPrep() {
-        kodeTiket(true);
-        showToast('Membuka E-Tiket...');
-        setTimeout(function () { window.location.href = 'etiket.html'; }, 1000);
-      }
-
-      var toastTimer;
-      function showToast(msg) {
-        clearTimeout(toastTimer);
-        var toast = document.getElementById('action-toast');
-        document.getElementById('toast-message').textContent = msg;
-        toast.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
-        toast.classList.add('translate-y-0', 'opacity-100');
-        toastTimer = setTimeout(dismissToast, 3200);
-      }
-
-      function dismissToast() {
-        var toast = document.getElementById('action-toast');
-        toast.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
-        toast.classList.remove('translate-y-0', 'opacity-100');
-      }
-    </script>
   </main>
   <?php include "nav.php" ?>
   <script src="js/script.js"></script>

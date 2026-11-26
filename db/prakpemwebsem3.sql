@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2026 at 12:17 PM
+-- Generation Time: Nov 26, 2026 at 01:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,15 +31,46 @@ CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `saldo` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `username`, `email`, `password`) VALUES
-(1, 'admin', 'admin123@email.com', 'admin123');
+INSERT INTO `accounts` (`id`, `username`, `email`, `password`, `saldo`) VALUES
+(1, 'admin', 'admin123@email.com', 'admin123', 64000),
+(7, 'admin1', 'asd@g.com', '1', 0),
+(8, 'testing', 't@t.com', '1', 0),
+(9, 'test123', 't@gmail.com', '2', 68000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `etiket`
+--
+
+CREATE TABLE `etiket` (
+  `id` int(11) NOT NULL,
+  `acc_id` int(11) NOT NULL,
+  `asal` int(11) NOT NULL,
+  `tujuan` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `kode` varchar(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `etiket`
+--
+
+INSERT INTO `etiket` (`id`, `acc_id`, `asal`, `tujuan`, `total`, `tanggal`, `kode`) VALUES
+(3, 1, 1, 2, 8000, '2026-11-26', '112026265870'),
+(4, 1, 1, 11, 32000, '2026-11-26', '112026265642'),
+(5, 1, 7, 5, 32000, '2026-11-26', '112026262028'),
+(6, 9, 13, 7, 32000, '2026-11-26', '112026262492'),
+(7, 1, 1, 13, 8000, '2026-11-25', '112026250001');
 
 -- --------------------------------------------------------
 
@@ -127,6 +158,15 @@ ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `etiket`
+--
+ALTER TABLE `etiket`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_accounts` (`acc_id`),
+  ADD KEY `fk_stasiun_asal` (`asal`),
+  ADD KEY `fk_stasiun_tujuan` (`tujuan`);
+
+--
 -- Indexes for table `jadwal`
 --
 ALTER TABLE `jadwal`
@@ -137,6 +177,34 @@ ALTER TABLE `jadwal`
 --
 ALTER TABLE `stasiun`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `etiket`
+--
+ALTER TABLE `etiket`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `etiket`
+--
+ALTER TABLE `etiket`
+  ADD CONSTRAINT `fk_accounts` FOREIGN KEY (`acc_id`) REFERENCES `accounts` (`id`),
+  ADD CONSTRAINT `fk_stasiun_asal` FOREIGN KEY (`asal`) REFERENCES `stasiun` (`id`),
+  ADD CONSTRAINT `fk_stasiun_tujuan` FOREIGN KEY (`tujuan`) REFERENCES `stasiun` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

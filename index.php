@@ -124,7 +124,7 @@
             </div>
             <!-- Quick Wallet CTAs -->
             <div class="pt-2 flex items-center gap-2">
-              <a class="flex-1 flex items-center justify-center gap-1.5 bg-secondary-container text-on-primary h-10 rounded-lg font-label-lg text-label-lg hover:brightness-105 active:scale-[0.985] transition-all shadow-sm"
+              <a class="flex-1 flex items-center justify-center gap-1.5 bg-secondary-container hover:bg-secondary text-on-primary h-10 rounded-lg font-label-lg text-label-lg hover:brightness-105 active:scale-[0.985] transition-all shadow-sm"
                 href="topup.php">
                 <span class="material-symbols-outlined text-[18px]">add_circle</span>
                 <span>Isi Saldo Cepat</span>
@@ -138,36 +138,42 @@
         <div class="grid grid-cols-3 gap-2.5">
           <!-- Item 1: Jadwal -->
           <a class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-container transition-colors group"
-            href="jadwal.html">
+            href="jadwal.php">
             <div
               class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary-container group-hover:scale-105 transition-transform mb-1.5">
               <span class="material-symbols-outlined text-[26px]"
                 style="font-variation-settings: 'FILL' 1;">calendar_clock</span>
             </div>
-            <span class="font-label-md text-label-md text-on-surface text-center leading-tight">Jadwal KRL</span>
-            <span class="font-body-sm text-[10px] text-on-surface-variant text-center mt-0.5">Jam &amp; KA</span>
+            <span class="font-label-md text-label-md text-on-surface text-center leading-tight">Jadwal</span>
           </a>
           <!-- Item 2: Peta Rute -->
           <a class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-container transition-colors group"
-            href="rute.html">
+            href="rute.php">
             <div
               class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary-container group-hover:scale-105 transition-transform mb-1.5">
               <span class="material-symbols-outlined text-[26px]"
                 style="font-variation-settings: 'FILL' 1;">route</span>
             </div>
-            <span class="font-label-md text-label-md text-on-surface text-center leading-tight">Peta Rute</span>
-            <span class="font-body-sm text-[10px] text-on-surface-variant text-center mt-0.5">13 Stasiun</span>
+            <span class="font-label-md text-label-md text-on-surface text-center leading-tight">Rute</span>
           </a>
           <!-- Item 3: Scan E-Tiket -->
           <a class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-container transition-colors group"
-            href="etiket.html">
+            href="beli.php">
             <div
-              class="w-12 h-12 rounded-xl bg-secondary-container/10 flex items-center justify-center text-secondary-container group-hover:scale-105 transition-transform mb-1.5">
+              class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary-container group-hover:scale-105 transition-transform mb-1.5">
               <span class="material-symbols-outlined text-[26px]"
-                style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+                style="font-variation-settings: 'FILL' 1;">payments</span>
             </div>
-            <span class="font-label-md text-label-md text-secondary text-center leading-tight">Scan Gate</span>
-            <span class="font-body-sm text-[10px] text-secondary-container text-center mt-0.5">E-Tiket QR</span>
+            <span class="font-label-md text-label-md text-on-surface text-center leading-tight">Beli E-Tiket</span>
+          </a>
+          <a class="flex flex-col items-center justify-center p-3 rounded-xl bg-surface-container-lowest shadow-sm hover:bg-surface-container transition-colors group"
+            href="etiket.php">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center text-primary-container group-hover:scale-105 transition-transform mb-1.5">
+              <span class="material-symbols-outlined text-[26px]"
+                style="font-variation-settings: 'FILL' 1;">transit_ticket</span>
+            </div>
+            <span class="font-label-md text-label-md text-on-surface text-center leading-tight">Lihat E-Tiket</span>
           </a>
         </div>
       </div>

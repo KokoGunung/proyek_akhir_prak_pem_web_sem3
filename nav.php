@@ -45,7 +45,7 @@
             data-path="akun" href="riwayat.php">
         <span class="material-symbols-outlined text-[24px]">history</span>
         <span class="font-label-md text-label-md">
-            Riwayat tiket
+            Riwayat E-tiket
         </span>
         </a>
 
