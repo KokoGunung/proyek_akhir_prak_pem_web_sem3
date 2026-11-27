@@ -85,7 +85,7 @@
         riwayat perjalanan.</p>
 
       <?php while($data = mysqli_fetch_array($query)){ ?>
-        <div data-kode="<?php echo $data["kode"] ?>" class="tiket_container bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+        <div class="tiket_container bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
           <div class="flex items-center justify-between pt-1">
             <div class="flex flex-col">
               <span class="font-body-md text-body-lg font-semibold text-on-surface leading-tight"><?php echo $data["asal"] ?></span>
